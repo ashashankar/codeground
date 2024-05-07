@@ -10,19 +10,15 @@ public class NearestSmallestElement {
         Stack<Integer> st = new Stack();
 
         for (int i=1; i<arr.length; i++) {
-            if (!st.isEmpty()) {
-                if (st.peek() < arr[i]) {
-                    result[i] = st.peek();
-                    st.push(arr[i]);
-                } else {
-                    while (arr[i]<st.peek()) {
-                        st.pop();
-                    }
-                    result[i] = st.peek();
-                }
-            } else {
-                st.push(arr[i]);
+            while (!st.isEmpty() && st.peek()> arr[i]) {
+                st.pop();
             }
+            if (st.isEmpty()) {
+                result[i] = -1;
+            } else {
+                result[i] = st.peek();
+            }
+            st.push(arr[i]);
         }
         System.out.println(Arrays.toString(result));
     }
