@@ -9,7 +9,7 @@ public class ReverseNodesInKGroup {
 
     public static void main(String[] args) {
         LinkedListNode head = createLinkedList();
-        int k = 2;
+        int k = 3;
 
         System.out.println( head.print());
         LinkedListNode result = reverseKNodes(head, k);
@@ -48,8 +48,9 @@ public class ReverseNodesInKGroup {
     public static LinkedListNode findKthNode(LinkedListNode node, int k) {
 
         LinkedListNode temp = node;
-        if (k-1>0) {
+        while (temp!= null && k-1>0) {
             temp = temp.next;
+            k--;
         }
         return temp;
     }
@@ -57,8 +58,8 @@ public class ReverseNodesInKGroup {
         int i = 1;
         LinkedListNode head = new LinkedListNode(-1);
         LinkedListNode tail = head;
-        while (i < 10) {
-            LinkedListNode node = new LinkedListNode(i+1);
+        while (i < 5) {
+            LinkedListNode node = new LinkedListNode(i);
             i++;
             tail.next = node;
             tail = tail.next;
