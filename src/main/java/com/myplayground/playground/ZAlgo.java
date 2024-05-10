@@ -11,12 +11,13 @@ public class ZAlgo {
         String pattern = "xxyzx";
         String concatString = pattern+ "$"+ input;
         int[] Z = new int[concatString.length()];
-        createZArr(Z, concatString);
+        //createZArr(Z, concatString);
         for (int i=0; i<concatString.length(); ++i) {
             if (Z[i] == pattern.length()) {
                 System.out.println(" Pattern found at index "+ (i - pattern.length() + 1));
             }
         }
+        System.out.println(Integer.valueOf("1"));
     }
 
     private static void createZArr(int[] Z, String concatString) {
@@ -34,7 +35,7 @@ public class ZAlgo {
                 Z[i] = right - left;
                 right--;
             } else {
-                int k = left - i;
+                int k = i- left;
                 if (Z[k] < right - left +1) {
                     Z[i] = Z[k];
                 } else {
