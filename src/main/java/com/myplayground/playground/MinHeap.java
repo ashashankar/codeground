@@ -5,13 +5,18 @@ import java.util.stream.Collectors;
 
 public class MinHeap {
     public static void main(String[] args) {
-        Integer[] a =  new Integer[]{2, 3, 5, 13,21, 22, 23, 48};
+        Integer[] a =  new Integer[]{5,7,9,8,11,13,15,12,14,10};
         ArrayList<Integer> list = (ArrayList<Integer>) Arrays.stream(a).collect(Collectors.toList());
-        int newElement = 9;
+        int newElement = 8;
         insert(list, newElement);
         System.out.println(list);
+        a = new Integer[]{8,9 ,10,10, 11, 11, 12, 12, 13};
+        list =(ArrayList<Integer>) Arrays.stream(a).collect(Collectors.toList());
+
+        deleteRootOfMinHeap(list);
         deleteRootOfMinHeap(list);
         System.out.println(list);
+
 
     }
 
@@ -40,14 +45,14 @@ public class MinHeap {
             int right = (2 * i) + 2;
             int minidx = i;
             if (left < len &&  list.get(left) < list.get(minidx)) {
-                swap(left, i, list);
+                swap(left, minidx, list);
                 minidx = left;
             }
             if (right < len && list.get(right) <  list.get(minidx)) {
-                swap(right, i, list);
+                swap(right, minidx, list);
                 minidx = right;
             }
-            i++;
+            i = i+2;
         }
     }
 
