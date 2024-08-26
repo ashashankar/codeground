@@ -38,7 +38,6 @@ public class FindTheClosestPalindromeLC564 {
                 closest = candidate;
             }
         }
-LC
         return Long.toString(closest);
     }
 
