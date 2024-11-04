@@ -3,7 +3,7 @@ package com.myplayground.playground;
 public class StringQuestions {
     public static void main(String[] args) {
         String s = "leetcode exercises sound delightful";
-        //System.out.println(new CircularSentencesLC2490().isCircular(s));
+        System.out.println(new StringQuestions().isCircularLC2490(s));
         s = "aaabaaaa";
         System.out.println(new StringQuestions().makeFancyStringLC1957(s));
     }
