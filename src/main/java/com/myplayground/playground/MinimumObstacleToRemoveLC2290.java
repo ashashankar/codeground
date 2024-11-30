@@ -50,12 +50,12 @@ public class MinimumObstacleToRemoveLC2290 {
     }
 
     public int bfsDequeuApproach(int r, int c, int[][] grid,  int[][] visited) {
-        Deque<Pair> pq =  new LinkedList<>();
-        pq.offerFirst(new Pair(0, 0, 0));
+        Deque<PPair> pq =  new LinkedList<>();
+        pq.offerFirst(new PPair(0, 0, 0));
         visited[0][0] = 1;
         int answer = 0;
         while (!pq.isEmpty()) {
-            Pair pair = pq.pollFirst();
+            PPair pair = pq.pollFirst();
             int weight = pair.getW();
             int row = pair.getR();
             int col = pair.getC();
@@ -70,9 +70,9 @@ public class MinimumObstacleToRemoveLC2290 {
 
                 if (visited[rw][cl] == 1) continue;
                 if (grid[rw][cl] == 1) {
-                    pq.offerLast(new Pair(weight + grid[rw][cl], rw, cl));
+                    pq.offerLast(new PPair(weight + grid[rw][cl], rw, cl));
                 } else {
-                    pq.offerFirst(new Pair(weight + grid[rw][cl], rw, cl));
+                    pq.offerFirst(new PPair(weight + grid[rw][cl], rw, cl));
                 }
 
                 visited[rw][cl] = 1;
