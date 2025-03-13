@@ -1,68 +1,72 @@
 package com.myplayground.playground;
 
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+
 class SnakeGame {
 
-    int[][] grid = null;
-    int[][] f = null;
-    int f_idx = 0;
-    int food_row = -1;;
-    int food_col = -1;
-    int curRow = 0;
-    int curCol = 0;
-    int width = 0;
-    int height = 0;
-    int score = 0;
+    int width, height, score;
+    int[][] food;
+    int foodIndex;
+    Deque<int[]> snake; // Deque to represent the snake (head at front, tail at back)
+    Set<String> snakeBody; // Set to quickly check if the snake's head collides with its body
+
     public SnakeGame(int width, int height, int[][] food) {
         this.width = width;
         this.height = height;
-        grid = new int[height][width];
-        f = food;
-        setFood();
-    }
+        this.food = food;
+        this.foodIndex = 0;
+        this.score = 0;
+        this.snake = new LinkedList<>();
+        this.snakeBody = new HashSet<>();
 
-    public void setFood() {
-        if (f_idx == f.length) return;
-        int[] f_place = f[f_idx];
-        food_row = f_place[0];
-        food_col = f_place[1];
-        grid[food_row][food_col] = -1;
-        f_idx++;
+        // Snake starts at position (0, 0)
+        snake.offerFirst(new int[]{0, 0});
+        snakeBody.add("0,0");
     }
 
     public int move(String direction) {
-        int[] dir = getCoordinates(direction);
-        curRow = curRow  + dir[0];
-        curCol = curCol+ dir[1];
-        if (check()) return -1;
+        // Get new head position based on the direction
+        int[] head = snake.peekFirst();
+        int newRow = head[0];
+        int newCol = head[1];
 
-        if (curRow == food_row && curCol == food_col) {
-            score += 1;
-            grid[food_row][food_col] = 0;
-            setFood();
-        }
-
-        return score;
-    }
-
-    public boolean check() {
-        if (curCol == width ||curCol < 0 ) return true;
-        if (curRow == height ||curRow < 0 ) return true;
-
-
-        return false;
-    }
-
-    public int[] getCoordinates(String direction) {
-        if (direction.equals("R")) {
-            return new int[]{0, 1};
-        } else if (direction.equals("L")) {
-            return new int[]{0, -1};
-        } else if (direction.equals("U")) {
-            return new int[]{-1, 0};
+        if (direction.equals("U")) {
+            newRow--;
         } else if (direction.equals("D")) {
-            return new int[]{1, 0};
+            newRow++;
+        } else if (direction.equals("L")) {
+            newCol--;
+        } else if (direction.equals("R")) {
+            newCol++;
         }
-        return new int[]{0, 0};
+
+        // Check if the new head position is out of bounds or collides with the body
+        if (newRow < 0 || newRow >= height || newCol < 0 || newCol >= width || snakeBody.contains(newRow + "," + newCol)) {
+            return -1; // Game over
+        }
+
+        // Check if snake eats food
+        boolean ateFood = false;
+        if (foodIndex < food.length && food[foodIndex][0] == newRow && food[foodIndex][1] == newCol) {
+            ateFood = true;
+            score++;
+            foodIndex++;
+        }
+
+        // Add new head to the snake
+        snake.offerFirst(new int[]{newRow, newCol});
+        snakeBody.add(newRow + "," + newCol);
+
+        // If the snake didn't eat food, remove the tail
+        if (!ateFood) {
+            int[] tail = snake.pollLast();
+            snakeBody.remove(tail[0] + "," + tail[1]);
+        }
+
+        return score; // Return current score
     }
 
     public static void main(String[] args) {
@@ -73,10 +77,8 @@ class SnakeGame {
             System.out.println(obj.move(d[0]));
 
 
-    }
+        }
 
-
-    }
 }
 
 /**
