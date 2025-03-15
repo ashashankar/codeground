@@ -70,8 +70,8 @@ class SnakeGame {
     }
 
     public static void main(String[] args) {
-        int[][] food = {{2,0},{0,0},{0,2},{0,1},{2,2},{0,1}};
-        String[][] dirs = {{"D"},{"D"},{"R"},{"U"},{"U"},{"L"},{"D"},{"R"},{"R"},{"U"},{"L"},{"L"},{"D"},{"R"},{"U"}};
+        int[][] food = {{2, 0}, {0, 0}, {0, 2}, {0, 1}, {2, 2}, {0, 1}};
+        String[][] dirs = {{"D"}, {"D"}, {"R"}, {"U"}, {"U"}, {"L"}, {"D"}, {"R"}, {"R"}, {"U"}, {"L"}, {"L"}, {"D"}, {"R"}, {"U"}};
         SnakeGame obj = new SnakeGame(3, 3, food);
         for (String[] d : dirs) {
             System.out.println(obj.move(d[0]));
@@ -79,6 +79,7 @@ class SnakeGame {
 
         }
 
+    }
 }
 
 /**
