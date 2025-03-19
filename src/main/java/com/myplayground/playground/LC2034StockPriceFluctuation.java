@@ -1,6 +1,7 @@
 package com.myplayground.playground;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class LC2034StockPriceFluctuation {
     public static void main(String[] args) {
