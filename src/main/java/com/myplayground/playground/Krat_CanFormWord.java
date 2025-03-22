@@ -2,6 +2,8 @@ import java.util.*;
 
 /**
  * check if note1 jumbled can form any of the word from words array
+ * return "-" if no match.
+ * return word if a match
  */
 class Krat_CanFormWord {
 
