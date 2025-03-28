@@ -4,7 +4,9 @@ import java.util.List;
 
 public class CourseScheduleIC207 {
     public static void main(String[] args) {
-
+        int numCourses = 20;
+        int[][] course = {{0,10},{3,18},{5,5},{6,11},{11,14},{13,1},{15,1},{17,4}};
+        System.out.println(new CourseScheduleIC207().canFinish(numCourses, course));
     }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -34,7 +36,7 @@ public class CourseScheduleIC207 {
             boolean flag = dfs(adj, adj.get(course).get(i), visited);
             if (!flag) return false;
             visited.remove(course);
-            adj.set(i, new ArrayList<Integer>());
+            adj.set(adj.get(course).get(i), new ArrayList<Integer>());
         }
 
         return true;
