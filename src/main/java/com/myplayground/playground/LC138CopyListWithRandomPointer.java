@@ -1,3 +1,5 @@
+package src.main.java.com.myplayground.playground;
+
 import java.util.HashMap;
 
 public class LC138CopyListWithRandomPointer {
