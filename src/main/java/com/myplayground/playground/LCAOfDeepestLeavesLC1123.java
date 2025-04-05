@@ -7,6 +7,11 @@ public class LCAOfDeepestLeavesLC1123 {
        new LCAOfDeepestLeavesLC1123().lcaDeepestLeaves(root);
     }
 
+    /**
+     * o(n) time and o(n) size of the arraylist and bfs q space.
+     * @param root
+     * @return
+     */
     public TreeNode lcaDeepestLeaves(TreeNode root) {
         ArrayList<Pair> nodes = new ArrayList<>();
         if (root.left == null && root.right == null) return root;
@@ -58,6 +63,34 @@ public class LCAOfDeepestLeavesLC1123 {
 
 
         return null;
+    }
+
+    /**
+     * less space consumed. o(n) time and o(height of tree) stack space
+     * @param root
+     * @return
+     */
+    public TreeNode lcaDeepestLeaves(TreeNode root) {
+        return lca(root).getNode();
+    }
+
+    public Pair lca(TreeNode node) {
+        if (node == null) {
+            return new Pair(null, 0);
+        }
+
+        Pair l = lca(node.left);
+        Pair r = lca(node.right);
+        if (l.getD() > r.getD()) {
+            return new Pair(l.getNode(), l.getD()+1);
+        }
+
+        if (r.getD() > l.getD()) {
+            return new Pair(r.getNode(), r.getD()+1);
+        }
+
+        return new Pair(node, l.getD() + 1);
+
     }
 }
 
