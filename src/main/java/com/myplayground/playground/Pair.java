@@ -1,5 +1,6 @@
 package com.myplayground.playground;
 
+
 public class Pair {
 
     int weight;
@@ -7,6 +8,7 @@ public class Pair {
 
     int row;
     int col;
+
     Pair(int node, int weight) {
         this.node = node;
         this.weight = weight;
@@ -17,6 +19,23 @@ public class Pair {
         this.row = r;
         this.col = c;
     }
+
+    int distance;
+    TreeNode treeNode ;
+    Pair(TreeNode node, int distance) {
+        this.treeNode = node;
+        this.distance = distance;
+    }
+
+    public TreeNode getTreeNode() {
+        return this.treeNode;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
+    int idx;
+    int number;
 
     public int getWeight() {
         return this.weight;
@@ -30,5 +49,12 @@ public class Pair {
     }
     public int getCol() {
         return this.col;
+    }
+
+    public int getIdx() {
+        return  this.node;
+    }
+    public int getNumber() {
+        return this.weight;
     }
 }
