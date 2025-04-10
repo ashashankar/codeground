@@ -1,12 +1,19 @@
 package com.myplayground.playground;
 
-import javax.swing.tree.TreeNode;
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 
 public class AllNodesAtDistanceKInBinaryTreeLC863 {
 
     public static void main(String[] args) {
-        System.out.println(new AllNodesAtDistanceKInBinaryTreeLC863().distanceK(null, null, 2));
+        Integer[] arr = {3,5,1,6,2,0,8,null,null,7,4};
+        int target = 5;
+        int distance = 2;
+        TreeNode root = new TreeNode().constructBinaryTree(arr);
+        TreeNode target_node = new TreeNode().getTreeNodeAddress(root, target);
+
+        System.out.println(new AllNodesAtDistanceKInBinaryTreeLC863().distanceK(root, target_node , distance));
     }
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
@@ -37,9 +44,9 @@ public class AllNodesAtDistanceKInBinaryTreeLC863 {
             Pair values = dist_q.poll();
             int d = values.getDistance();
             if (d == k) {
-                result.add(values.getNode().val);
+                result.add(values.getTreeNode().val);
             } else {
-                List<TreeNode> children = map.get(values.getNode());
+                List<TreeNode> children = map.get(values.getTreeNode());
                 if(children == null) continue;
                 for (TreeNode c : children) {
                     if (!visited.contains(c)) {
@@ -52,22 +59,5 @@ public class AllNodesAtDistanceKInBinaryTreeLC863 {
 
         }
         return result;
-    }
-}
-
-class Pair {
-    int distance;
-    TreeNode node;
-    Pair(TreeNode node, int distance) {
-        this.node = node;
-        this.distance = distance;
-    }
-
-    public int getDistance() {
-        return this.distance;
-    }
-
-    public TreeNode getNode() {
-        return this.node;
     }
 }
