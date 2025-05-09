@@ -11,7 +11,7 @@ public class PermutationsLC46 {
         int[] a = {1,2,3};
         HashSet<Integer> hs = new HashSet<>();
         generatePermuations(result, new ArrayList<>(), a, hs);
-        System.out.println("All "  +result);
+        System.out.println("All Permutations "  +result);
 
     }
     public static void generatePermuations(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> permu, int[] a, HashSet<Integer> hs) {
