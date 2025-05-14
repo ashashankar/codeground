@@ -1,0 +1,35 @@
+public class TotalCharactersInStringAfterTransformationsILC3335 {
+
+    public int lengthAfterTransformations(String s, int t) {
+        char[] ch = s.toCharArray();
+        int MOD = 1000000007;
+        int[] hm = new int[26];
+        for (int i=0; i<s.length(); i++) {
+            hm[s.charAt(i) - 'a']++;
+        }
+        while (t > 0) {
+            int[] temp = new int[26];
+            for (int i=0; i<26; i++) {
+                char c = (char)(i + 'a');
+                int freq = hm[i];
+
+                if (c == 'z') {
+                    temp['a' - 'a'] =  (temp['a' - 'a']+freq) %MOD ;
+                    temp['b' - 'a'] =  (temp['b' - 'a']+freq) %MOD ;
+                } else {
+                    char ch_next = (char )(c + 1);
+                    temp[ch_next- 'a'] =  (temp[ch_next - 'a']+freq) %MOD ;
+                }
+            }
+            hm = temp;
+            t--;
+        }
+        long count = 0l;
+        for ( int i=0; i<26; i++) {
+            count += hm[i];
+        }
+
+
+        return (int)(count%MOD);
+    }
+}
