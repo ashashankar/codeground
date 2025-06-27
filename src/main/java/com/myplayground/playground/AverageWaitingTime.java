@@ -1,6 +1,6 @@
 package com.myplayground.playground;
 
-public class AverageWaitingTimeLC1701 {
+public class AverageWaitingTime {
     public static void main(String[] args) {
         int[][] customers = {{2,3},{6,3},{7,5},{11,3},{15,2},{18,1}};
         System.out.println(averageWaitingTime(customers));
