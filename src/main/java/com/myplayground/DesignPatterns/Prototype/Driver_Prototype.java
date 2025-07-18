@@ -18,7 +18,7 @@ public class Driver_Prototype {
         packageConfig.setColor("Yellow");
         for (int i=0; i<100; i++) {
             PackageConfig pkg_config = packageConfig.clone();
-            System.out.println("Original prototype "+ packageConfig + " object "+ pkg_config.hashCode());
+            System.out.println("new prototype "+ packageConfig + " object "+ pkg_config.hashCode());
         }
         System.out.println(" Yellow prototype "+ packageConfig);
 
