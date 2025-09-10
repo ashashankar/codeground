@@ -3,7 +3,11 @@ package com.myplayground.temp;
 import java.util.Arrays;
 
 /**
- * This class show fibonacci recursion , memoization and tabulation implemenation.
+ * This class shows 4 implemenations for  fibonacci
+ * 1.recursion ,
+ * 2.memoization
+ * 3.tabulation implemenation.
+ * 4. iterative - o(1) space
  */
 public class Fibonacci {
     public static void main(String[] args) {
@@ -20,6 +24,7 @@ public class Fibonacci {
         dp[1] = 1;
         System.out.println(fibonacci_tabulation(fibonacci_tabulation(n, dp));
 
+        System.out.println(fibonacci_iterative(n));
     }
 
     //recursion o(2^n)
@@ -46,5 +51,19 @@ public class Fibonacci {
             dp[i] = dp[i-1] + dp[i-2];
         }
         return dp[n];
+    }
+
+    /**
+     * In this approach space complexity is o(1). Time o(1)
+     */
+    public static int fibonacci_iterative(int n) {
+        int prev = 1;
+        int prev2 = 0;
+        for (int i=2; i<=n; i++) {
+            int sum = prev + prev2;
+            prev2 = prev;
+            prev = sum;
+        }
+        return prev;
     }
 }
