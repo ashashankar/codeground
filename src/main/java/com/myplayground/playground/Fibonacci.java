@@ -1,18 +1,37 @@
 package com.myplayground.temp;
 
+import java.util.Arrays;
+
 /**
  * This class show fibonacci recursion , memoization and tabulation implemenation.
  */
 public class Fibonacci {
     public static void main(String[] args) {
-        System.out.println(fibonacci(7));
+        int n = 7;
+        System.out.println(fibonacci(n));
+
+        //Memoization improvement
+        int[] dp = new int[n+1];
+        Arrays.fill(dp, -1);
+        System.out.println(fibonacci_memo(n, dp));
+
     }
 
+    //recursion
     public static int fibonacci(int n) {
         if (n == 0) return 0;
-        if (n == 1) return 1;
+        if(n == 1) return 1;
 
         int x = fibonacci(n-1) + fibonacci(n-2);
         return x;
+    }
+
+    //memoization
+    public static int fibonacci_memo(int n, int[] dp) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        if(dp[n] != -1) return dp[n];
+        dp[n] = fibonacci_memo(n-1, dp) + fibonacci_memo(n-2, dp);
+        return dp[n];
     }
 }
