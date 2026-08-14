@@ -9,6 +9,11 @@ public class SegmentTrees {
         int[] seg_array = new int[4*nums.length];
         buildSegmentTree(nums, 0, 0, nums.length-1, seg_array);
         System.out.println(Arrays.toString(seg_array));
+        int idx = 2;
+        int val = 8;
+        updateSegmentTree(idx, val, 0, 0, nums.length-1, seg_array);
+        System.out.println(Arrays.toString(seg_array));
+
     }
 
     public static void buildSegmentTree(int[] nums, int index, int left, int right, int[] seg_array) {
@@ -20,7 +25,21 @@ public class SegmentTrees {
         buildSegmentTree(nums, 2*index+1, left, mid, seg_array);
         buildSegmentTree(nums, 2*index+2, mid+1, right, seg_array);
         seg_array[index] = seg_array[2*index+1] + seg_array[2*index+2];
-        return;
+    }
+
+    public static void updateSegmentTree(int idx, int new_val,int index, int left, int right, int[] seg_array) {
+
+        if (left == right) {
+            seg_array[index] = new_val;
+            return;
+        }
+        int mid = left + (right - left) /2;
+        if (idx <= mid) {
+            updateSegmentTree(idx, new_val, 2*index+1, left, mid, seg_array);
+        } else {
+            updateSegmentTree(idx, new_val, 2*index+2, mid+1, right, seg_array);
+        }
+        seg_array[index] = seg_array[2*index+1] + seg_array[2*index+2];
     }
 }
 class TreeNode {
